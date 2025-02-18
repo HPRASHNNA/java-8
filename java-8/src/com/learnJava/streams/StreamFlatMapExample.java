@@ -4,14 +4,17 @@ import com.learnJava.data.Student;
 import com.learnJava.data.StudentDataBase;
 
 import java.util.List;
+import java.util.Map;
 
+import static com.learnJava.data.StudentDataBase.*;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 public class StreamFlatMapExample {
 
     public static List<String> printStudentActivities() {
 
-        List<String> studentActivities = StudentDataBase.getAllStudents()
+        List<String> studentActivities = getAllStudents()
                 .stream()
                 .map(Student::getActivities) //Stream<List<String>>
                 .flatMap(List::stream) //<Stream<String>
@@ -23,7 +26,7 @@ public class StreamFlatMapExample {
 
     public static List<String> printUniqueStudentActivities() {
 
-        List<String> studentActivities = StudentDataBase.getAllStudents()
+        List<String> studentActivities = getAllStudents()
                 .stream()
                 .map(Student::getActivities)
                 .flatMap(List::stream)
@@ -37,7 +40,7 @@ public class StreamFlatMapExample {
 
     public static long getStudentActivitiesCount() {
 
-        long totalActivities = StudentDataBase.getAllStudents()
+        long totalActivities = getAllStudents()
                 .stream()
                 .map(Student::getActivities)
                 .flatMap(List::stream)
@@ -48,6 +51,18 @@ public class StreamFlatMapExample {
 
     }
 
+
+
+
+    public static List<String> getname() {
+
+        List<String> studentActivities = getAllStudents()
+                .stream()
+                .map(Student::getName)
+                .collect(toList());
+
+        return studentActivities;
+    }
     public static void main(String[] args) {
 
 

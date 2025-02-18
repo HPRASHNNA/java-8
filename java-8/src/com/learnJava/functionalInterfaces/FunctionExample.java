@@ -24,6 +24,7 @@ public class FunctionExample {
         Function<String,String> abc = Function.identity();
 
         System.out.println(abc.apply("ABC"));
+        System.out.println("Result is : " + strLength.apply("java8"));
 
 
     }

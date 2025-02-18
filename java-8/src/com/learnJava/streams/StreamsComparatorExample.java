@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class StreamsComparatorExample {
+public class  StreamsComparatorExample {
 
     public static List<Student> sortStudentsByName(){
 

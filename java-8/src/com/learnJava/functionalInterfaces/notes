@@ -1,0 +1,158 @@
+Lambdas expression is function interface
+
+before java 8 we two functional interface runnable and comparator
+
+after the java 8
+
+*consumer  , Biconsumer
+*predicate , Bipredicate
+*function , bifunction , unary , binary
+*supplier
+
+#consumer is interface in java
+
+which having void interface will mot return anything
+
+
+Question 1: Write a program that uses the Consumer interface to print the squares of all the numbers in a list.
+
+Question 2: Write a program that uses the BiConsumer interface to add two numbers and print their sum.
+
+Question 3: Write a program that uses the Consumer interface to convert all the strings in a list to uppercase.
+
+Question 4: Write a program that uses the BiConsumer interface to compare two strings and print whether they are equal or not.
+
+Question 5: Write a program that uses the Consumer interface to multiply all the numbers in a list by a given factor and print the result.
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BiConsumer;0
+import java.util.function.Consumer;14422
+
+public class Main {
+    public static void main(String[] args) {
+        // Question 1: Print the squares of all the numbers in a list
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        Consumer<Integer> squarePrinter = number -> System.out.println(number * number);
+        numbers.forEach(squarePrinter);
+        System.out.println();
+
+        // Question 2: Add two numbers and print their sum using BiConsumer
+        BiConsumer<Integer, Integer> sumPrinter = (num1, num2) -> System.out.println(num1 + num2);
+        sumPrinter.accept(10, 20);
+        System.out.println();
+
+        // Question 3: Convert all strings in a list to uppercase using Consumer
+        List<String> strings = Arrays.asList("apple", "banana", "cherry");
+        Consumer<String> uppercaseConverter = str -> System.out.println(str.toUpperCase());
+        strings.forEach(uppercaseConverter);
+        System.out.println();
+
+        // Question 4: Compare two strings and print whether they are equal or not using BiConsumer
+        BiConsumer<String, String> stringComparer = (str1, str2) -> {
+            if (str1.equals(str2)) {
+                System.out.println("The strings are equal.");
+            } else {
+                System.out.println("The strings are not equal.");
+            }
+        };
+        stringComparer.accept("Hello", "World");
+        System.out.println();
+
+        // Question 5: Multiply all numbers in a list by a given factor using Consumer
+        List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5);
+        int factor = 2;
+        Consumer<Integer> multiplier = num -> System.out.println(num * factor);
+        numbers2.forEach(multiplier);
+    }
+}
+
+
+#Predicate
+Predicate interface has a single abstract method called test(T t) which takes an input of type T and returns a boolean result
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+public class PredicateExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // Example 1: Filter even numbers
+        Predicate<Integer> isEven = num -> num % 2 == 0;
+        List<Integer> evenNumbers = filterNumbers(numbers, isEven);
+        System.out.println("Even numbers: " + evenNumbers);
+
+        // Example 2: Filter numbers greater than 5
+        Predicate<Integer> greaterThan5 = num -> num > 5;
+        List<Integer> numbersGreaterThan5 = filterNumbers(numbers, greaterThan5);
+        System.out.println("Numbers greater than 5: " + numbersGreaterThan5);
+    }
+
+    public static List<Integer> filterNumbers(List<Integer> numbers, Predicate<Integer> predicate) {
+        List<Integer> result = new ArrayList<>();
+        for (Integer number : numbers) {
+            if (predicate.test(number)) {
+                result.add(number);
+            }
+        }
+        return result;
+    }
+}
+
+#Predicate and Consumer
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+public class PredicateConsumerExample {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("John", "Jane", "Adam", "Alex", "Emily");
+
+        // Example: Print names starting with "A"
+        Predicate<String> startsWithA = name -> name.startsWith("A");
+        Consumer<String> namePrinter = name -> System.out.println(name);
+
+        processNames(names, startsWithA, namePrinter);
+    }
+
+    public static void processNames(List<String> names, Predicate<String> predicate, Consumer<String> consumer) {
+        for (String name : names) {
+            if (predicate.test(name)) {
+                consumer.accept(name);
+            }
+        }
+    }
+}
+
+#functional
+
+will have return function
+will take input as one type and give output in another type
+ Function<List<Student>, Map<String, Double>>
+ here input is list student and output is map of student
+
+# unary operator
+ epresents an operation on a single operand that produces a result of the same type as its operand. This is a specialization of Function for the case where the operand and result are of the same type
+
+ #binary operator
+ epresents an operation upon two operands of the same type, producing a result of the same type as the operands. This is a specialization of BiFunction for the case where the operands and the result are all of the same type.
+
+
+
+#Supplier
+will what we will pass
+
+
+
+
+
+
+
+
+
+
+
